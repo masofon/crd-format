@@ -147,6 +147,32 @@ route off the `description` in each one's front matter — "write a CRD for X" r
 Both skills expect to read `crd-how-to.md` and `crd-template.md` at `<crd path>` every time they
 run. Put those files next to your CRDs, not somewhere clever.
 
+### `crd-update` is mostly called by your other skills
+
+This is the part that makes it a system rather than two documents you remember to update.
+
+`crd-write` is invoked by a person: someone is specifying a component. **`crd-update` mostly
+isn't.** In the system it came from, the other skills call it — the component design skill, the
+scheme and theming skill, the build agent. Each one ends its own job by handing `crd-update` the
+facts (what changed, what was decided, where it now lives) and letting it make the edit.
+
+So wiring this in means adding a closing instruction to the skills you already have:
+
+> When the work is done, hand the facts to `crd-update` — what changed, what was decided, and
+> where it now lives. Do not edit the CRD or its front matter yourself.
+
+Two reasons it's built that way rather than giving each skill its own "and update the CRD" section:
+
+- **One writer, one convention.** A document with several writers grows several conventions, and
+  the drift stays invisible until something gets built from the wrong side of it. The same
+  argument as one home per fact, applied to who holds the pen.
+- **The CRD updates as a side effect of the work**, in the same pass, rather than as a separate
+  task someone has to remember. Documentation that depends on remembering is documentation that
+  goes stale.
+
+The skill has a matching instruction pointing the other way — *if you are a build skill, hand over
+the facts and stop* — so a caller that tries to write front matter itself gets told not to.
+
 ## A note on what makes this work
 
 Not the template. The template is a skeleton and took an afternoon.
@@ -171,6 +197,11 @@ Issues and PRs welcome, particularly:
   contact with a different kind of component.
 
 No template or process for raising something — just open an issue.
+
+## Background
+
+[Probabilistic isn't a dirty word](https://www.designsystemscollective.com/probabilistic-isnt-a-dirty-word-37fa836bedd8)
+— Cassie Groos, Design Systems Collective. The thinking behind this way of working.
 
 ## Origin
 

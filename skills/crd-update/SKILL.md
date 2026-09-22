@@ -16,6 +16,28 @@ amendment statements, and an amendment lands against whatever the build actually
 `crd-review` critiques a draft pre-implementation. **This skill is the only
 thing that writes to an existing CRD.**
 
+## You are mostly called by other skills, not by a person
+
+Design and build skills do not edit CRDs. They call this one.
+
+A component design skill finishing a variant axis, a scheme or theming skill closing out its work,
+a build agent shipping the component — each of them ends by handing **facts** to this skill:
+what changed, what was decided, where it now lives. This skill makes the edit.
+
+That is why it exists as a separate skill rather than a section inside each of them. A CRD with
+several writers grows several conventions, and the drift is invisible until something is built
+from the wrong side of it. One writer means one convention, one set of front-matter rules, and one
+place to fix them.
+
+**If you are a design or build skill reading this: hand over the facts and stop.** Do not write
+the front matter, do not bump the version, do not set `lifecycle`. Say what happened and let this
+skill decide what that means for the document.
+
+**If you are this skill, called by another one:** the § 3 rule still applies. A caller reporting
+what it built is a *claim about the build*, not permission to overwrite a requirement. Classify
+the differences and confirm anything ambiguous with the human before editing — an automated caller
+cannot give you that confirmation, and should not be treated as if it has.
+
 ## 0. Ground truth — read before acting
 
 CRDs live in `<crd path>`, **one flat folder, no subfolders**. Reference documents sit alongside
@@ -222,5 +244,7 @@ and there is no reverse link to write by hand.
 ## When to use
 
 * "Add X to the Y CRD" / "the CRD needs amending for …"
-* Post-build wrap-up after a component design or theming skill
 * A component changed in code or Figma and the CRD has gone stale
+* **Called by another skill** — a design skill closing out a variant axis or a theming pass, a
+  build agent finishing a component, anything that has just changed the thing the CRD describes.
+  This is the common case, not the exception
