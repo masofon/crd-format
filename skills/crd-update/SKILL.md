@@ -18,25 +18,16 @@ thing that writes to an existing CRD.**
 
 ## You are mostly called by other skills, not by a person
 
-Design and build skills do not edit CRDs. They call this one.
+Design and build skills do not edit CRDs. They finish their own work, hand this skill the facts —
+what changed, what was decided, where it now lives — and stop.
 
-A component design skill finishing a variant axis, a scheme or theming skill closing out its work,
-a build agent shipping the component — each of them ends by handing **facts** to this skill:
-what changed, what was decided, where it now lives. This skill makes the edit.
+**If you are a design or build skill:** hand over the facts. Do not write front matter, bump the
+version or set `lifecycle`.
 
-That is why it exists as a separate skill rather than a section inside each of them. A CRD with
-several writers grows several conventions, and the drift is invisible until something is built
-from the wrong side of it. One writer means one convention, one set of front-matter rules, and one
-place to fix them.
-
-**If you are a design or build skill reading this: hand over the facts and stop.** Do not write
-the front matter, do not bump the version, do not set `lifecycle`. Say what happened and let this
-skill decide what that means for the document.
-
-**If you are this skill, called by another one:** the § 3 rule still applies. A caller reporting
-what it built is a *claim about the build*, not permission to overwrite a requirement. Classify
-the differences and confirm anything ambiguous with the human before editing — an automated caller
-cannot give you that confirmation, and should not be treated as if it has.
+**If you are this skill, called by another one:** § 3 still applies. A caller reporting what it
+built is a claim about the build, not permission to overwrite a requirement. Classify the
+differences and confirm anything ambiguous with the human. An automated caller cannot give you
+that confirmation.
 
 ## 0. Ground truth — read before acting
 
@@ -72,9 +63,6 @@ The block is deleted when design closes it; it is not a permanent record.
 **Reconciliation** — the component was built or changed and the CRD has gone stale. § 3.
 
 ### Rules for every edit
-
-Both jobs write to a document someone else will act on. These hold regardless of which one you
-are doing.
 
 * **Never invent.** Content with no source is either derived from a real artefact (the Figma
   component set, the shipped code) or left empty with its status flag honest. Empty is
@@ -192,25 +180,12 @@ Storing a second copy of a computable fact is how drift starts.
 
 ## 5. Ship — branch, PR, work item
 
-<!-- REWRITE THIS SECTION FOR YOUR SETUP.
+<!-- REWRITE FOR YOUR SETUP. The specifics below are one system's. What
+     transfers: CRD changes ship through review like code; the CRD file is
+     staged explicitly, never `git add -A`; and the awkward mechanics of your
+     setup get written down here once, including what each failure means. -->
 
-     The specifics below — branch names, a commit-message hook, a work-item
-     linking check — are one system's. What transfers is the shape:
-
-     1. CRD changes ship through review, like code. Documentation that can be
-        pushed straight to the integration branch stops being reviewed within
-        about a month.
-     2. Stage the CRD file explicitly. Never `git add -A` — an agent editing
-        docs should not be able to sweep an unrelated working-tree change into
-        a docs PR.
-     3. Write down the awkward mechanics of YOUR setup here, once, including
-        the failure modes and what they actually mean. The notes below about a
-        denied push and an unnecessary `--no-verify` are the genuinely useful
-        kind: each one is a wrong diagnosis someone already paid for. -->
-
-Every change goes through a pull request. Do not assume documentation is exempt: an exemption that
-once existed may have been removed, and the failure mode is a confusing push rejection rather than
-a clear message.
+Every change goes through a pull request, documentation included.
 
 ```
 git -C <repo> checkout <default branch> && git -C <repo> pull --ff-only

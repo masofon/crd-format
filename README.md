@@ -201,7 +201,24 @@ No template or process for raising something — just open an issue.
 ## Background
 
 [Probabilistic isn't a dirty word](https://www.designsystemscollective.com/probabilistic-isnt-a-dirty-word-37fa836bedd8)
-— Cassie Groos, Design Systems Collective. The thinking behind this way of working.
+— Cassie Groos, Design Systems Collective, August 2026.
+
+The reasoning behind this format, written after eight months and 58 CRDs in production. It argues
+the case for **structured prose over a schema** for the thing humans write: enough structure that
+an agent can find a requirement, cite an ID and stop on an `[open]` marker; enough prose that a PM
+can write it on a Tuesday without opening a terminal. Judgement doesn't arrive as JSON, and
+codifying belongs downstream of it.
+
+It also covers what the first version got wrong — lifecycle stored as a folder so moving a file
+broke every link to it, amendments as separate documents, acceptance criteria restating the
+requirements above them in 57 of 58 files — and the single rule that drove the rewrite: **one
+origin per fact.** Not *one copy*. The same fact appearing in the CRD, in Figma and in the code is
+the pipeline working. Drift is two *origins* for one fact, with no way to tell which is stale.
+
+Worth reading before adopting any of this, because it's the part a repo of skills can't carry: why
+the document is one file rather than four, why "ready for dev" is computed rather than stored, and
+why the boring update work belongs to the machine so the humans keep requirements, intent,
+decisions and taste.
 
 ## Origin
 

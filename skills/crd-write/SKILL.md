@@ -152,11 +152,8 @@ Move on when a topic is settled; circle back rather than block.
    what was considered and rejected — that is Ruled out material and nobody volunteers it.
 4. **How the component takes colour — ask this explicitly, as an `AskUserQuestion`.**
 
-   <!-- HOUSE-SPECIFIC, KEPT AS A WORKED EXAMPLE. The three options below are
-   the system this came from. Replace them with your own theming model — but
-   keep the question. Whatever your model is, a component whose colour
-   behaviour nobody decided gets built against whichever tokens happened to be
-   nearest, and that is not caught until it is placed somewhere unexpected. -->
+   <!-- HOUSE-SPECIFIC. The three options below are one system's theming
+   model. Replace them with yours — but keep the question. -->
 
    Does this component adapt to the surface it sits on, or does it hold its own colour? The
    answer determines which tokens design binds, so it cannot be left implicit.
@@ -205,17 +202,10 @@ Move on when a topic is settled; circle back rather than block.
 
 ## House doctrines to hold the draft against
 
-<!-- REPLACE THIS WHOLE BLOCK WITH YOUR OWN.
-
-     The list below is the system this came from, kept so you can see the
-     shape rather than the contents. What makes the section work is not these
-     particular rules — it is that a new author, or an agent, has one place to
-     find the handful of house positions that are not obvious from the
-     template and not written down anywhere else.
-
-     A good entry is a rule someone would otherwise get wrong by reasonably
-     assuming the opposite. If nobody would plausibly propose the opposite, it
-     does not need to be here. -->
+<!-- REPLACE WITH YOUR OWN. The list below is one system's, kept to show the
+     shape. A good entry is a rule someone would otherwise get wrong by
+     reasonably assuming the opposite; if nobody would propose the opposite,
+     it does not belong here. -->
 
 These are house rules a new author will not know. Apply them as you write, and say so when you do.
 
@@ -289,11 +279,8 @@ question closed or explicitly deferred. Say what currently stands between this C
 
 ## Shipping
 
-<!-- ADAPT. The mechanics below are one system's; the three rules that
-     transfer are: CRD changes ship like code, through review; the CRD file is
-     staged explicitly so an unrelated working-tree change cannot ride along;
-     and the shipping detail is written down once, in one skill, not repeated
-     in each one that ships something. -->
+<!-- ADAPT. The mechanics below are one system's. What transfers: CRD changes
+     ship like code, through review, and the CRD file is staged explicitly. -->
 
 Every change goes through a branch and a pull request, and every pull request needs a linked work
 item in its description — CI fails without one. `<ticket skill>` creates it. Stage the CRD file
