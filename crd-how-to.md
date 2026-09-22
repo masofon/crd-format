@@ -269,7 +269,7 @@ Only ID'd statements are the contract, so the block cannot be mistaken for one, 
 
 ## Front matter is not yours
 
-Everything in the front matter block is maintained by the skills, & not by hand. `lifecycle`, `status`, `version`, `format`, `last_updated`, `figma`, `storybook`, `related_crds`, `id` & `name` are all either derivable from the work or need to change in more than one file at once — `related_crds` is maintained in both directions, a status change moves `lifecycle` from backlog to active, closing a section bumps the version. A human editing one of them by hand updates one copy of a fact that has two, & the drift is invisible until something is built from the wrong side of it.
+Everything in the front matter block is maintained by the skills, & not by hand. `lifecycle`, `status`, `version`, `last_updated`, `figma`, `storybook`, `related_crds`, `id` & `name` are all either derivable from the work or need to change in more than one file at once — `related_crds` is maintained in both directions, a status change moves `lifecycle` from backlog to active, closing a section bumps the version. A human editing one of them by hand updates one copy of a fact that has two, & the drift is invisible until something is built from the wrong side of it.
 
 So the writing happens through Claude Code, & you read the result rather than typing it. In practice that means both windows open: Claude Code doing the editing, & the CRD in preview beside it so you can see each change land in context. An occasional hand tweak to a line of prose is fine. Front matter, never.
 

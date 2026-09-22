@@ -2,7 +2,6 @@
 id: component-name
 name: Component Name
 version: 0.1.0
-format: 2
 lifecycle: requested
 status:
   requirements: not_started

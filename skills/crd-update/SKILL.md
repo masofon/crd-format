@@ -29,8 +29,8 @@ one rather than working from memory:
 
 Do not restate their content in a CRD, a commit message or this skill. One home per fact.
 
-**`format:`** records which generation of the template a CRD was written against. Read it to know
-what to expect; always **write** to the shape `crd-template.md` currently defines.
+**Always write to the shape `crd-template.md` currently defines**, whatever shape the CRD you are
+editing is in.
 
 **CRD means Component *Reference* Document.** Not Requirements — most of it is consumed
 after requirements are settled.

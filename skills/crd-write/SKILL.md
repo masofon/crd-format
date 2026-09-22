@@ -244,7 +244,7 @@ existing CRD.
 
 **Front matter** — you own all of it:
 
-- `id`, `name`, `version: 0.1.0`, `format: 2`, `last_updated` today
+- `id`, `name`, `version: 0.1.0`, `last_updated` today
 - `lifecycle: requested`. Moving to `backlog` is a human decision — ask, do not set it
 - `status:` — honest flags. A section you did not fill is `not_started`
 - `figma:` if a component set exists; `storybook:` when the component ships. **`storybook:` is the

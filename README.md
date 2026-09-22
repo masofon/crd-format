@@ -95,22 +95,41 @@ is the instruction; delete it once you've done the work.
 
 ## About the Divider example
 
-`Divider_CRD.md` is shared **verbatim**, as a real working document, with only a Figma file link
-and a tracker reference redacted. Three things to know:
+`Divider_CRD.md` is a **real CRD from Resin**, Unily's design system — shared verbatim, with only
+a Figma file link and a tracker reference redacted. It is deliberately *not* genericised, so you
+can see what one of these looks like in service rather than as a specimen.
 
-1. **It carries two sections the template doesn't** — `4 · Brand validation` and
-   `5 · CMS behaviour`. Those are system-specific additions, and they're left in deliberately, as
-   an illustration of how the format is meant to be extended. See **§ Adding your own sections**
-   in the how-to. Its Documentation guidance is therefore numbered 6 rather than 4, and its front
-   matter carries the two matching `status:` keys — that's the extension working as intended, not
-   a mismatch with the template.
-2. **It names real components** — Context Menu, List — and real token paths. Treat them as
-   texture, not as anything you need to map onto your own system.
-3. **It is a small component on purpose.** A one-part atom with no states, no content and no
-   interaction is the clearest way to see what the format does, because almost everything in it is
-   *reasoning* rather than specification. Note how much of its value is in **Ruled out** — nine
-   rejected options, each with its why. That section exists to stop the same proposal arriving
-   every six months, and it's the one people skip when they adopt the format.
+**It doesn't match the template, and that's the point.**
+
+Divider has six numbered sections where the template has four. The two extra ones are Resin's, and
+they're the clearest demonstration in this repo that the format is meant to be cut to fit:
+
+| Section | What it's for | Who reads it |
+|---|---|---|
+| `4 · Brand validation` | Which token pairings need contrast checking, split by *when* they can be checked — at brand creation for opaque fills, at placement for transparent ones that need the parent surface to resolve. Plus the exemptions, and why each one is deliberate | Resin's Brand Builder and the people setting up a new brand — **not** the component build |
+| `5 · CMS behaviour` | What a non-designer gets when they place this component in the CMS: layout constraints, which properties are exposed to them, and the guardrails that stop them producing something broken or inaccessible | The CMS block work and the runtime agent — **not** the component build |
+
+Both exist because Resin is a multi-brand design system behind a CMS product, so a component's
+CRD has to answer questions long after the component ships, for people who will never open Figma.
+If your system doesn't have those consumers, the sections would be dead weight — which is exactly
+why they're not in the template. A system with a performance budget, a localisation review or a
+native platform to mirror would add something different.
+
+Two mechanical consequences worth noticing, because they're what "adding a section" actually costs:
+its Documentation guidance is numbered **6** rather than 4, and its front matter carries
+`brand_validation:` and `cms_behaviour:` keys in the `status:` map. That's the extension working
+as intended, not drift. See **§ Adding your own sections** in the how-to for the rules that keep
+an added section from rotting.
+
+**Two other things to know:**
+
+- **It names real components** — Context Menu, List — real token paths, and a couple of Resin's
+  own skills. Treat them as texture, not as anything you need to map onto your own system.
+- **It is a small component on purpose.** A one-part atom with no states, no content and no
+  interaction is the clearest way to see what the format does, because almost everything in it is
+  *reasoning* rather than specification. Note how much of its value sits in **Ruled out** — nine
+  rejected options, each with its why. That section exists to stop the same proposal arriving
+  every six months, and it's the one people skip when they adopt the format.
 
 ## Installing the skills
 
