@@ -87,9 +87,6 @@ is the instruction; delete it once you've done the work.
 - **`crd-review`** and **`crd-apply`** — two sibling skills the others reference. `crd-review`
   critiques a draft; `crd-apply` reads a CRD to implement against it. Referenced by name so the
   boundaries are legible; write your own or delete the references.
-- **`crd-conversion-map.md`** — the legacy → current format map. Entirely a function of what your
-  *old* documents look like, so there was nothing generic to share. `crd-update` § 0 describes what
-  to put in yours.
 - **The global accessibility rules.** The how-to's accessibility boundary assumes you have a
   single document holding every rule that is true of all components — semantic HTML, ARIA
   mechanics, contrast ratios, keyboard conventions, focus indicators, touch targets, reduced
@@ -151,8 +148,6 @@ Issues and PRs welcome, particularly:
 - **Adaptation notes.** If you've fitted this to a system with a different theming model, token
   architecture or tracker, the interesting part is what didn't fit. That's more useful than a
   clean success story.
-- **Conversion maps.** `crd-conversion-map.md` was left out because it's specific to whatever your
-  old documents looked like. A couple of real examples would make writing one much less daunting.
 - **Corrections.** Places the how-to contradicts itself, or a rule that turns out not to survive
   contact with a different kind of component.
 
