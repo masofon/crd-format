@@ -1,6 +1,6 @@
 ---
 name: crd-write
-description: Write, spec or draft a CRD (Component Reference Document) for a component — or fill in a later section of an existing one. Researches the component type, reads related CRDs and the built Figma and code artefacts, then interviews the designer. Use when asked to write, spec, specify, draft, scope, define or document a component; to start or flesh out requirements, specs or specifications for a new or planned component; to capture what a component needs to do; or to complete design specifications or documentation guidance after design or build. For amending, converting or reconciling an EXISTING CRD use crd-update; for critiquing a draft use crd-review; for reading a CRD to implement against it use crd-apply.
+description: Write, spec or draft a CRD (Component Reference Document) for a component — or fill in a later section of an existing one. Researches the component type, reads related CRDs and the built Figma and code artefacts, then interviews the designer. Use when asked to write, spec, specify, draft, scope, define or document a component; to start or flesh out requirements, specs or specifications for a new or planned component; to capture what a component needs to do; or to complete design specifications or documentation guidance after design or build. For amending or reconciling an EXISTING CRD use crd-update; for critiquing a draft use crd-review; for reading a CRD to implement against it use crd-apply.
 ---
 
 <!-- ADAPT ME. Placeholders in <angle brackets> are the things that differ per
@@ -31,18 +31,17 @@ Do not reconstruct any of these from memory. If something contradicts them, they
 sections and headings as written. Read other CRDs for *content* precedent — decisions, ruled-out
 options, boundaries, naming — and never for structure.
 
-This matters most in a folder that has been migrated: CRDs written before the current template
-look nothing like it, and hand-converted ones may carry local quirks. A CRD that differs from the
-template is out of date, not a better example. If you find yourself writing "I'll follow the shape
-of X", stop and open the template instead.
+Any CRD written before the template last changed will differ from it, and hand-edited ones pick up
+local quirks. A CRD that differs from the template is out of date, not a better example. If you
+find yourself writing "I'll follow the shape of X", stop and open the template instead.
 
 **CRDs live in `<crd path>`, one flat folder.** Filenames are PascalCase-to-underscores plus
 `_CRD.md` — `BasicCard` → `Basic_Card_CRD.md`. Record any aliases that do not follow the rule
 here, so nobody has to guess: a component the CRDs file under a different name than the code does
 is the single most common way an agent creates a duplicate CRD.
 
-**If the CRD already exists and has no `format: 2`**, it predates the current template. Stop and
-use `crd-update` — converting is its job, not yours.
+**If the CRD already exists**, this skill only fills sections that are still empty. Anything that
+rewrites existing content is `crd-update` — that is its job, not yours.
 
 ## Which job are you doing
 

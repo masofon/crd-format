@@ -261,11 +261,11 @@ An accessibility statement earns its place only if it is true of **this componen
 
 **Failing the test does not promote it to the agent.** Three outcomes: it is already covered, so it goes (the usual case); it is a genuine gap, so raise it against the agent rather than writing it here; or it is component-specific but written too vaguely, so rewrite it & keep it. The same sentence appearing in three or more CRDs is a prompt to go looking for a missing global rule, not grounds to promote one.
 
-**Converting a legacy CRD: nothing is deleted.** Statements that fail the test are not removed during conversion. They drop below the ID'd ones into a labelled block:
+**Tidying an existing CRD: nothing is deleted on suspicion.** A statement that looks like it fails the test is not removed on the spot. It drops below the ID'd ones into a labelled block:
 
-> _Carried from v1, not verified as component-specific. Check against the global accessibility rules & delete once confirmed covered._
+> _Not verified as component-specific. Check against the global accessibility rules & delete once confirmed covered._
 
-Only ID'd statements are the contract, so the block cannot be mistaken for one, & nothing is lost while it waits to be checked. **Read the content under every accessibility heading before moving anything — never match on the heading alone.** A v1 heading tells you nothing about what sits under it, & real requirements hide under generic-sounding ones: "Focus management" is the second most repeated heading in the corpus, & much of what it covers is genuinely component-specific.
+Only ID'd statements are the contract, so the block cannot be mistaken for one, & nothing is lost while it waits to be checked. **Read the content under every accessibility heading before moving anything — never match on the heading alone.** A heading tells you nothing about what sits under it, & real requirements hide under generic-sounding ones: "Focus management" is the usual offender, & much of what it covers is genuinely component-specific.
 
 ## Front matter is not yours
 

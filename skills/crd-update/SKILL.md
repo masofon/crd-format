@@ -1,16 +1,16 @@
 ---
 name: crd-update
-description: Edit an existing CRD — amend a shipped component, convert a legacy CRD to the current format on touch, reconcile a CRD against what was actually built in Figma or code, and maintain front matter, lifecycle and related_crds. Use whenever a CRD file needs changing for any reason other than writing a brand-new one. Not for reviewing a draft (crd-review) or for reading a CRD to implement against it (crd-apply).
+description: Edit an existing CRD — amend a shipped component, reconcile a CRD against what was actually built in Figma or code, and maintain front matter, lifecycle and related_crds. Use whenever a CRD file needs changing for any reason other than writing a brand-new one. Not for reviewing a draft (crd-review) or for reading a CRD to implement against it (crd-apply).
 ---
 
 <!-- ADAPT ME. Placeholders in <angle brackets> are the things that differ per
 design system — see the README for the full list. § 5 Ship is one system's
 mechanics: rewrite it for yours rather than find-and-replacing it. -->
 
-# CRD Update — amend, convert, reconcile
+# CRD Update — amend and reconcile
 
-Three jobs, one skill, because they interleave: an amendment to a legacy CRD triggers a
-conversion, and a build triggers a reconciliation that may close amendment statements.
+Two jobs, one skill, because they interleave: a build triggers a reconciliation that may close
+amendment statements, and an amendment lands against whatever the build actually did.
 
 **Boundary.** `crd-apply` locates and applies a CRD during implementation.
 `crd-review` critiques a draft pre-implementation. **This skill is the only
@@ -25,19 +25,12 @@ one rather than working from memory:
 | Document | Owns |
 |---|---|
 | `crd-how-to.md` | Section-by-section conventions, versioning, the amendment lifecycle, `[open]` markers, the ready-for-dev gate |
-| `crd-conversion-map.md` | The legacy → current map: sections, front matter keys, filenames, name-matching hazards |
 | `crd-template.md` | The target shape |
-
-> `crd-conversion-map.md` is not included in this share, because it is entirely a function of what
-> your *old* documents looked like. Write your own the first time you convert one: a section-by-
-> section map, a front-matter key map, the filename rule and its exceptions, and — most
-> valuable — the name-matching hazards, the cases where the old document's name for a component
-> is not the name the code or the CRD folder uses.
 
 Do not restate their content in a CRD, a commit message or this skill. One home per fact.
 
-**Format detection**: `format: 2` in front matter means current. Absent means legacy. Both are
-readable — interpret prose, do not parse. Always **write** to the current shape.
+**`format:`** records which generation of the template a CRD was written against. Read it to know
+what to expect; always **write** to the shape `crd-template.md` currently defines.
 
 **CRD means Component *Reference* Document.** Not Requirements — most of it is consumed
 after requirements are settled.
@@ -46,8 +39,7 @@ after requirements are settled.
 
 **Whichever job it is, the rule in § 3 applies: classify every difference, then confirm
 before editing.** It is filed under reconciliation because that is where it bites hardest, but
-conversion surfaces Figma-vs-code divergences just as often, and an amendment can invalidate a
-statement nobody meant to touch.
+an amendment can invalidate a statement nobody meant to touch just as easily.
 
 **Amendment** — new or changed requirements for a component. Follow `crd-how-to.md`
 § Amending a shipped component: a transient block placed after the `# CRD: <Name>` title and
@@ -55,48 +47,33 @@ its horizontal rule, immediately above `# 1 · Requirements`, statements as `[op
 with IDs reused where they replace and new where they add, status flipped to `in_progress`.
 The block is deleted when design closes it; it is not a permanent record.
 
-**Conversion** — a legacy CRD reaching the substance gate. Follow `crd-conversion-map.md`.
-
 **Reconciliation** — the component was built or changed and the CRD has gone stale. § 3.
 
-### The substance gate
+### Rules for every edit
 
-A legacy CRD converts **on touch, never in bulk**. A real amendment triggers it. A typo, a link
-fix or a changelog line does not. When conversion is triggered:
+Both jobs write to a document someone else will act on. These hold regardless of which one you
+are doing.
 
-* **Two commits.** Conversion first, amendment second — so the amendment stays reviewable
-  instead of hiding inside a wall of moved sections.
-* **`format:` and `version:` are orthogonal.** Conversion sets `format: 2` and leaves
-  `version:` alone; the requirements did not change. The amendment then bumps `version:`
-  on its own terms.
-* **Never invent.** Content with no source in the old document is either derived from a real
-  artefact (the Figma component set, the shipped code) or left empty with its status flag honest.
-  Empty is information. Guessed content reads as approved requirement.
-* **Anatomy is load-bearing** and usually has no source in a legacy document. Derive it from the
-  build where one exists. Where neither build nor design exists, conversion escalates into an
-  authoring interview with the designer — that is a legitimate path, not a blocker.
-* **Strip the editor dialect.** If your legacy CRDs were exported from a documentation tool, they
-  will carry its markup — inline-styled HTML `<table>` blocks, escaped underscores, non-standard
-  horizontal rules. Conversion removes it. (Preserving it only makes sense while that tool still
-  round-trips the files. Once it is retired, preserving it is just carrying dead formatting.)
-* Cross-component content — token wiring, global a11y standards, naming conventions, theming
-  rules — does not belong in a CRD at all. Strip it rather than carrying it across.
-* **Never drop an open question silently.** Carry every one across. If an amendment subsumes a
-  question, the amendment says which one and why. A question that disappears looks answered.
-* **Accessibility: nothing is deleted on conversion.** The boundary — what belongs in a CRD
-  and what belongs to `<accessibility agent>` — is owned by `crd-how-to.md`
-  § What accessibility belongs in a CRD. Read it; do not re-derive it. The conversion rule:
-  component-specific statements get `A` IDs, everything else drops into the labelled
-  "carried from v1, not verified" block below them. Only ID'd statements are the contract.
-* **Never strip accessibility content by heading match.** Read what is underneath first. A legacy
-  heading says nothing about its content, and this is the exact failure that put
-  `brand_validation: complete` on 22 CRDs whose contrast sections held only placeholders.
-  Deleting a real requirement leaves no trace in the CRD, and nobody notices until a
-  component ships without it.
-* **Distrust derived front-matter values.** A status flag inherited from a legacy document or set
-  by a migration script is a claim, not a fact — check it against the actual content before
-  letting it stand. See the 22-CRD case above: the migration matched a *heading* while the content
-  underneath was template placeholder.
+* **Never invent.** Content with no source is either derived from a real artefact (the Figma
+  component set, the shipped code) or left empty with its status flag honest. Empty is
+  information. Guessed content reads as approved requirement.
+* **Never drop an open question silently.** If an amendment subsumes a question, the amendment
+  says which one and why. A question that disappears looks answered.
+* **Distrust derived front-matter values.** A status flag set by a script, or inherited from
+  whatever the document used to be, is a claim rather than a fact — check it against the actual
+  content before letting it stand. A migration that matched on *headings* once put
+  `brand_validation: complete` on 22 CRDs whose contrast sections held nothing but template
+  placeholder, and nobody noticed until a component shipped without the validation.
+* **Never judge a section by its heading.** Read what is underneath before moving, rewriting or
+  deleting it. Real requirements hide under generic-sounding headings — "Focus management" is the
+  usual offender — and a deleted requirement leaves no trace in the CRD at all.
+* **Accessibility statements are not yours to delete.** The boundary — what belongs in a CRD and
+  what belongs to `<accessibility agent>` — is owned by `crd-how-to.md` § What accessibility
+  belongs in a CRD. Read it; do not re-derive it. If a statement looks global, flag it rather than
+  removing it.
+* **Cross-component content does not belong in a CRD at all** — token wiring, global a11y
+  standards, naming conventions, theming rules. If you find it there, say so; it has a home
+  elsewhere.
 * **Deriving contrast pairings from code: check which selector uses which token.** Do not infer
   from the token's name. A token whose name reads like link text can turn out to be the
   current-page colour. Where a child component supplies the colour, say so and point at that
@@ -247,5 +224,3 @@ and there is no reverse link to write by hand.
 * "Add X to the Y CRD" / "the CRD needs amending for …"
 * Post-build wrap-up after a component design or theming skill
 * A component changed in code or Figma and the CRD has gone stale
-* A legacy CRD needs bringing to the current format because something substantive is changing
-  in it

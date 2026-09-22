@@ -25,7 +25,7 @@ because people asked for it.
 | `crd-template.md` | The skeleton. Four numbered sections plus a commented Migration section |
 | `Divider_CRD.md` | A real, filled-in CRD — see the caveats below |
 | `skills/crd-write/SKILL.md` | Claude Code skill: research, interview, and draft a new CRD, or fill a later section of an existing one |
-| `skills/crd-update/SKILL.md` | Claude Code skill: amend, convert and reconcile an existing CRD, and maintain its front matter |
+| `skills/crd-update/SKILL.md` | Claude Code skill: amend and reconcile an existing CRD, and maintain its front matter |
 
 Read `crd-how-to.md` first even if you only want the skills. The skills assume it and defer to it
 constantly; on its own, a skill reads as a pile of rules with the reasoning removed.
